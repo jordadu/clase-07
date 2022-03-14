@@ -103,6 +103,21 @@ hist(geih$year)
 browseURL("https://www.data-to-viz.com",getOption("browser")) # data to viz
 browseURL("https://www.r-graph-gallery.com/",getOption("browser")) # galería de gráficos de R
 
+# Quick display of two cabapilities of GGally, to assess the distribution and correlation of variables 
+library(GGally)
+
+# Create data 
+data <- data.frame( var1 = 1:100 + rnorm(100,sd=20), v2 = 1:100 + rnorm(100,sd=27), v3 = rep(1, 100) + rnorm(100, sd = 1)) 
+data$v4 = data$var1 ** 2 
+data$v5 = -(data$var1 ** 2) 
+
+# Check correlation between variables
+#cor(data) 
+
+# Nice visualization of correlations
+ggcorr(data, method = c("everything", "pearson")) 
+
+
 #----------------------------#
 cat("ggplot funciona por medio de capas y se usa el signo + para adiccionar un atributo al gráfico")
 ggplot(t_des) 
